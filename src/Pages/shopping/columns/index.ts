@@ -18,7 +18,7 @@ export const columns: GridColDef[] = [
         headerName: 'Valor unitário',
     },
     {
-        field: 'Total',
+        field: 'total',
         headerName: 'Valor Total',
     },
 ]  

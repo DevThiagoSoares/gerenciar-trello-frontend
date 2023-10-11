@@ -1,5 +1,5 @@
 import EditIcon from '@mui/icons-material/Edit';
-import { IconButton, Popover, Stack, Typography } from '@mui/material';
+import { IconButton, Stack } from '@mui/material';
 import { Box } from '@mui/system';
 import { DataGrid, GridCellParams, GridColDef } from '@mui/x-data-grid';
 import { useState } from 'react';
@@ -13,11 +13,12 @@ interface TableGridProps {
     take?: number;
     total?: number;
     idAdmin?: string;
+    link?: string
     columns: GridColDef[];
     onDelete?: (id: string) => void;
     onEdit?: (id: string) => void;
     onView?: (id: string) => void;
-    EditPassword?: (id: string) => void;
+    setLink?: (id: string) => void;
     handleSkip?: (row: number) => void;
     handleTake?: (row: number) => void;
 
@@ -74,19 +75,15 @@ export function TableGrid(props: TableGridProps) {
                             <EditIcon />
                         </IconButton>
                     )}
-                    {props.EditPassword && (
+                    {props.link && (
                         <>
 
                             <IconButton
                                 sx={{ color: '#B58930' }}
-                                disabled={
-                                    props.idAdmin !== undefined && row.id === props.idAdmin
-                                        ? true
-                                        : false
-                                }
                                 onClick={() =>
-                                    props.EditPassword ? props.EditPassword(row) : ''
+                                    props.link ? props.setLink(row) : ''
                                 }>
+                                teste
                                 <LockIcon />
                             </IconButton>
                         </>
@@ -101,8 +98,7 @@ export function TableGrid(props: TableGridProps) {
             props.onView(params.id.toString());
         }
     };
-
-    const columns = [...props.columns, ...actionColumn]
+    const columns = [...props.columns, actionColumn]
     return (
         <Box sx={tableContainer}>
             <DataGrid

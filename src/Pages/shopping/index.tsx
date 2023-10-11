@@ -51,6 +51,11 @@ export function Shopping() {
     }
     const handleCloseModal = () => {
         setTypeModal({ create: false })
+        setRequester({} as project)
+        setLisHistory([])
+        setMaterialList({} as MaterialList)
+        setArrayList([])
+        setRows([])
     }
     const handleChange = (event: any) => {
         setRequester((state: any) => ({

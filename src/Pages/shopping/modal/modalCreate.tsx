@@ -8,6 +8,7 @@ import { styleButton } from '../style';
 import { gridForms } from './style';
 import { equipeProps, itemListProps } from '../interface';
 import { createCard } from '../../../service/shop';
+import Swal from 'sweetalert2';
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -45,9 +46,22 @@ export default function CreateShopModal(props: modalProps) {
             materialList: props.arrayList.map((item: any) => item.materialList)
         }
         await createCard(payload).then((res) => {
-            console.log(res)
+            Swal.fire({
+                icon: 'success',
+                title: 'Card craiado com sucesso',
+                showCloseButton: true,
+                showCancelButton: true,
+                focusConfirm: false
+            })
+            props.handleClose()
         }).then((error: any) => {
-            console.log(error)
+            Swal.fire({
+                icon: 'error',
+                title: 'Ops.. algo deu errado',
+                showCloseButton: true,
+                showCancelButton: true,
+                focusConfirm: false
+            })
         })
     }
 

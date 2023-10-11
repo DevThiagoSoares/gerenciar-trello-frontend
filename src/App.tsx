@@ -1,4 +1,10 @@
-import './App.css';
-import { App } from './App.1';
+import React from "react";
+import AppRoutes from "./routes/routes";
 
-export default App;
+
+export function App() {
+    return (
+        <AppRoutes />
+
+    )
+}

@@ -37,14 +37,14 @@ export default function CreateShopModal(props: modalProps) {
         }))
     }
 
-    const handleSubmit = (event: React.FormEvent) => {
+    const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault()
         const payload: itemListProps = {
             ...equip,
             project: props.arrayList[0].requester,
             materialList: props.arrayList.map((item: any) => item.materialList)
         }
-        createCard(payload).then((res) => {
+        await createCard(payload).then((res) => {
             console.log(res)
         }).then((error: any) => {
             console.log(error)
@@ -84,7 +84,7 @@ export default function CreateShopModal(props: modalProps) {
                         <TextField
                             id="filled-basic"
                             label="Gerente técnico"
-                            name='projectManager'
+                            name='technicalManager'
                             value={equip.technicalManager}
                             onChange={handleChange}
                             variant="filled" />

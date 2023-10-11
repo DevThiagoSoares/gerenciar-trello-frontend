@@ -19,6 +19,7 @@ import ListItemText from '@mui/material/ListItemText';
 import { Page_List } from '../../routes/ArrayListPage';
 import { colors } from '../../shared/themes';
 import { useLocation, useNavigate } from 'react-router-dom';
+import logoIcts from '../img/logoicts23.png'
 
 interface AppContainerProps {
   children?: React.ReactNode;
@@ -98,7 +99,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-export default function MiniDrawer({children}: AppContainerProps) {
+export default function MiniDrawer({ children }: AppContainerProps) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -113,7 +114,7 @@ export default function MiniDrawer({children}: AppContainerProps) {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const handleNavigate = (route:string) => {
+  const handleNavigate = (route: string) => {
     navigate(route);
   };
 
@@ -121,7 +122,7 @@ export default function MiniDrawer({children}: AppContainerProps) {
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
-        <Toolbar sx={{background:colors.primary_base}}>
+        <Toolbar sx={{ background: colors.primary_base }}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -134,39 +135,38 @@ export default function MiniDrawer({children}: AppContainerProps) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Mini variant drawer
-          </Typography>
+          <div><img src={logoIcts} alt='logoicts' width="95"
+            height="auto" /></div>
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open}>
-        <DrawerHeader sx={{background:colors.primary_base}}>
+        <DrawerHeader sx={{ background: colors.primary_base }}>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
         </DrawerHeader>
         <Divider />
         <List>
-          {Page_List.map((item:any) => (
+          {Page_List.map((item: any) => (
             <ListItem key={item.title} disablePadding sx={{ display: 'block' }} onClick={() => handleNavigate(item.route)}>
               <ListItemButton
-               sx={{
-                minHeight: 40,
-                justifyContent: open ? 'initial' : 'center',
-                margin: '0.5rem',
-                borderRadius: '4px',
-                px: 2.5,
-                ...(location.pathname === item.route &&
-                  !open && {
+                sx={{
+                  minHeight: 40,
+                  justifyContent: open ? 'initial' : 'center',
+                  margin: '0.5rem',
+                  borderRadius: '4px',
+                  px: 2.5,
+                  ...(location.pathname === item.route &&
+                    !open && {
                     background: colors.primary_lightest,
                   }),
-                ...(location.pathname === item.route &&
-                  open && {
+                  ...(location.pathname === item.route &&
+                    open && {
                     background: colors.primary_lightest,
                     color: colors.primary_base,
                   }),
-  
-               }}
+
+                }}
               >
                 <ListItemIcon
                   sx={{
@@ -176,14 +176,14 @@ export default function MiniDrawer({children}: AppContainerProps) {
                     mr: open ? 3 : 'auto',
                     ...(location.pathname === item.route &&
                       !open && {
-                        color: colors.primary_base,
-                      }),
+                      color: colors.primary_base,
+                    }),
                     ...(location.pathname === item.route &&
                       open && {
-                        color: colors.primary_base,
-                      }),
+                      color: colors.primary_base,
+                    }),
                   }}
-    
+
                 >
                   {item.icon}
                 </ListItemIcon>
@@ -193,8 +193,8 @@ export default function MiniDrawer({children}: AppContainerProps) {
           ))}
         </List>
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3}}>
-        <DrawerHeader/>
+      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+        <DrawerHeader />
         <>{children}</>
       </Box>
     </Box>

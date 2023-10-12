@@ -23,6 +23,7 @@ import CreateShopModal from "./modal/modalCreate";
 import { MaterialList, project } from "./interface";
 import { v4 as uuid } from "uuid";
 import { TableGrid } from "../../Components/tableGrid";
+import { removeInvalidCharacters } from "../../utils/regex";
 
 export function Shopping() {
     const [typeModal, setTypeModal] = useState<{ create: boolean }>({
@@ -38,13 +39,11 @@ export function Shopping() {
     const [amount, setAmount] = useState(null)
 
     useEffect(() => {
-        if (rows.length > 0) {
             const total = rows.reduce((accumulator, item) => {
                 return accumulator + item.total;
             }, 0);
 
             setAmount(total)
-        }
     }, [rows]);
 
     const handleOpenModalCreate = () => {
@@ -58,6 +57,15 @@ export function Shopping() {
 
         setArrayList(data);
     };
+
+    const DeleteItemArray = (id:string) => {
+        const newList = rows.filter((item:any)=>{
+            if(item.id !== id){
+                return item
+            }
+        })
+        setRows(newList)
+    }
 
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
@@ -113,6 +121,7 @@ export function Shopping() {
                                 label="Nome do solicitante"
                                 variant="filled"
                                 value={requester.requester ?? ""}
+                                onInput={(e)=>removeInvalidCharacters(e,'string')}
                                 name="requester"
                                 onChange={handleChange}
                                 sx={{ gridColumn: "span 2" }}
@@ -122,6 +131,7 @@ export function Shopping() {
                                 id="filled-basic"
                                 label="Projeto"
                                 name="projectName"
+                                onInput={(e)=>removeInvalidCharacters(e,'string')}
                                 value={requester.projectName ?? ""}
                                 onChange={handleChange}
                                 variant="filled"
@@ -132,6 +142,7 @@ export function Shopping() {
                                 label="Centro de custo"
                                 name="costCenter"
                                 value={requester.costCenter ?? ""}
+                                onInput={(e)=>removeInvalidCharacters(e,'string')}
                                 onChange={handleChange}
                                 variant="filled"
                             />
@@ -141,6 +152,7 @@ export function Shopping() {
                                 label="Empresa/Filial"
                                 name="subsidiary"
                                 value={requester.subsidiary ?? ""}
+                                onInput={(e)=>removeInvalidCharacters(e,'string')}
                                 onChange={handleChange}
                                 variant="filled"
                             />
@@ -175,8 +187,8 @@ export function Shopping() {
                                 id="filled-basic"
                                 label="Quantidade"
                                 name="quantity"
-                                type="number"
                                 value={materialList.quantity ?? ""}
+                                onInput={(e)=>removeInvalidCharacters(e,'number')}
                                 onChange={handleChangeItem}
                                 variant="filled"
                             />
@@ -185,6 +197,7 @@ export function Shopping() {
                                 id="filled-basic"
                                 label="Unidade"
                                 name="und"
+                                onInput={(e)=>removeInvalidCharacters(e,'string')}
                                 value={materialList.und ?? ""}
                                 onChange={handleChangeItem}
                                 variant="filled"
@@ -195,6 +208,7 @@ export function Shopping() {
                                 label="Descrição"
                                 variant="filled"
                                 name="description"
+                                onInput={(e)=>removeInvalidCharacters(e,'string')}
                                 value={materialList.description ?? ""}
                                 onChange={handleChangeItem}
                                 sx={{ gridColumn: "span 2" }}
@@ -212,7 +226,7 @@ export function Shopping() {
                                 id="filled-basic"
                                 name="unitaryValue"
                                 value={materialList.unitaryValue ?? ""}
-                                type="number"
+                                onInput={(e)=>removeInvalidCharacters(e,'number')}
                                 onChange={handleChangeItem}
                                 label="Valor unitário"
                                 variant="filled"
@@ -260,8 +274,10 @@ export function Shopping() {
                             <TableGrid
                                 columns={columns}
                                 rows={rows}
-                                onDelete={() => { }}
+                                onDelete={DeleteItemArray}
                                 setLink={() => { }}
+                                titleDelete="Excluir"
+                                subtitleDelete="Tem certeza que deseja excluir este item?"
                             />
                         </Box>
                         <Box sx={styleButton}>

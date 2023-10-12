@@ -1,14 +1,12 @@
 import React from "react";
 import AppRoutes from "./routes/routes";
-import { Alert } from "./Components/Alert";
+import { ToastContainer } from "react-toastify";
 
 
 export function App() {
     return (
-        <>
-            <AppRoutes />
-            <Alert />
-        </>
-
+       <div>
+         <AppRoutes />
+        </div>
     )
 }

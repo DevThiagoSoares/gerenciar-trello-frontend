@@ -10,6 +10,8 @@ import { equipeProps, itemListProps } from "../interface";
 import { createCard } from "../../../service/shop";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
+import { removeInvalidCharacters, validateEmail } from "../../../utils/regex";
+import { TypeAlert } from "../../../Components/Alert";
 
 const style = {
   position: "absolute" as "absolute",
@@ -48,26 +50,12 @@ export default function CreateShopModal(props: modalProps) {
     };
 
     try {
-      await createCard(payload);
-      Swal.fire({
-        icon: "success",
-        title: "Card criado com sucesso",
-        showCloseButton: true,
-        showCancelButton: true,
-        focusConfirm: false,
-      });
+        await createCard(payload);
+        TypeAlert(`Solicitacao de compra criada com sucesso`,"success")
       props.handleClose();
     } catch (error) {
-      toast('🦄 Wow so easy!', {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
+      console.log(`entrou`)
+      TypeAlert(`Ops.. algo deu errado`, `error`)
     }
   };
 
@@ -97,6 +85,7 @@ export default function CreateShopModal(props: modalProps) {
               name="projectLeader"
               value={equip.projectLeader}
               onChange={handleChange}
+              onInput={(e)=>removeInvalidCharacters(e,'string')}
               variant="filled"
             />
             <TextField
@@ -105,6 +94,7 @@ export default function CreateShopModal(props: modalProps) {
               name="projectManager"
               value={equip.projectManager}
               onChange={handleChange}
+              onInput={(e)=>removeInvalidCharacters(e,'string')}
               variant="filled"
             />
             <TextField
@@ -112,6 +102,7 @@ export default function CreateShopModal(props: modalProps) {
               label="Gerente técnico"
               name="technicalManager"
               value={equip.technicalManager}
+              onInput={(e)=>removeInvalidCharacters(e,'string')}
               onChange={handleChange}
               variant="filled"
             />
@@ -124,6 +115,7 @@ export default function CreateShopModal(props: modalProps) {
               name="justification"
               value={equip.justification}
               onChange={handleChange}
+              onInput={(e)=>removeInvalidCharacters(e,'string')}
               rows={3}
             />
             <TextField

@@ -29,7 +29,7 @@ export default function ModalDelete(props: modalProps) {
         <>
             <IconButton
                 onClick={() => setOpen(true)}>
-                <DeleteIcon color={'primary'} />
+                <DeleteIcon sx={{ color: "#205171"}} />
             </IconButton>
 
             <Dialog open={open}>
@@ -53,8 +53,8 @@ export default function ModalDelete(props: modalProps) {
                         padding: '1.0rem',
                     }}></DialogContent>
                 <DialogActions sx={{ padding: '0 2.5rem 2.5rem 2.5rem' }}>
-                    <Button onClick={handleClose}>Cancelar</Button>
-                    <Button onClick={handleOk} variant="contained">
+                    <Button onClick={handleClose} sx={{ color: "#205171", borderRadius: "20px"}}>Cancelar</Button>
+                    <Button onClick={handleOk} sx={{ background: "#205171", borderRadius: "20px" }} variant="contained">
                         Excluir
                     </Button>
                 </DialogActions>

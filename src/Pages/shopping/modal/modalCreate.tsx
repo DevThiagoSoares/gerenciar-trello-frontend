@@ -9,6 +9,7 @@ import { gridForms } from "./style";
 import { equipeProps, itemListProps } from "../interface";
 import { createCard } from "../../../service/shop";
 import Swal from "sweetalert2";
+import { toast } from "react-toastify";
 
 const style = {
   position: "absolute" as "absolute",
@@ -57,12 +58,15 @@ export default function CreateShopModal(props: modalProps) {
       });
       props.handleClose();
     } catch (error) {
-      Swal.fire({
-        icon: "error",
-        title: "Ops... algo deu errado",
-        showCloseButton: true,
-        showCancelButton: true,
-        focusConfirm: false,
+      toast('🦄 Wow so easy!', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
       });
     }
   };

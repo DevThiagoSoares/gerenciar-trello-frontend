@@ -15,6 +15,7 @@ export interface MaterialList {
   description: string;
   unitaryValue: number;
   purchaseLink?: string;
+  total?: number
 }
 
 export interface project {

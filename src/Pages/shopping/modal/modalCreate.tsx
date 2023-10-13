@@ -8,8 +8,6 @@ import { styleButton } from "../style";
 import { gridForms } from "./style";
 import { equipeProps, itemListProps } from "../interface";
 import { createCard } from "../../../service/shop";
-import Swal from "sweetalert2";
-import { toast } from "react-toastify";
 import { removeInvalidCharacters, validateEmail } from "../../../utils/regex";
 import { TypeAlert } from "../../../Components/Alert";
 
@@ -29,6 +27,7 @@ interface modalProps {
   open: boolean;
   arrayList: any[];
   handleClose: () => void;
+  updateList: () => void;
 }
 
 export default function CreateShopModal(props: modalProps) {
@@ -50,9 +49,12 @@ export default function CreateShopModal(props: modalProps) {
     };
 
     try {
+       if(validateEmail(equip.email)){
         await createCard(payload);
         TypeAlert(`Solicitacao de compra criada com sucesso`,"success")
       props.handleClose();
+      props.updateList()
+       }
     } catch (error) {
       TypeAlert(`Ops.. algo deu errado`, `error`)
     }
@@ -125,6 +127,8 @@ export default function CreateShopModal(props: modalProps) {
               onChange={handleChange}
               value={equip.email}
               sx={{ gridColumn: "span 3" }}
+              error={!validateEmail(equip.email)}
+              helperText={!validateEmail(equip.email)?'Email inválido':''}
             />
           </Box>
           <Box sx={styleButton}>

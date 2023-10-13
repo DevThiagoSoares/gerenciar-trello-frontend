@@ -97,6 +97,13 @@ export function Shopping() {
             [event.target.name]: event.target.value,
         }));
     };
+    const handleUpdateList = () => {
+        setRows([])
+        setArrayList([])
+        setLisHistory([])
+        setRequester({} as project)
+        setMaterialList({} as MaterialList)
+    }
     return (
         <Box sx={{ m: 2 }}>
             <Typography sx={titleStyle} gutterBottom>
@@ -303,6 +310,7 @@ export function Shopping() {
                                     arrayList={arrayList}
                                     open={typeModal.create}
                                     handleClose={handleCloseModal}
+                                    updateList={handleUpdateList}
                                 />
                             )}
                         </Box>

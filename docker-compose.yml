@@ -1,12 +1,12 @@
 version: '3'
 
 services:
-  sonar-rotas-frontend:
-    image: sonar-rotas-frontend:latest
+  gerenciar-trello-frontend:
+    image: gerenciar-trello-frontend:latest
     build:
       dockerfile: Dockerfile
       context: .
-    container_name: sonar-rotas-frontend
+    container_name: gerenciar-trello-frontend
     restart: always
     ports:
       - ${PROJECT_PORT}:80

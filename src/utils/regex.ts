@@ -12,8 +12,12 @@ export const removeInvalidCharacters = (event: any, type: string) => {
         event.target.value = event.target.value.replace(regex, "");
       }
   } else {
-    const regex = /[^0-9]/g;
-    event.target.value = event.target.value.replace(regex, "");
+   const regex = /^-?\d*\.?\d*(,\d+)?$/;
+   if (event.target.value.match(regex) !== null) {
+     event.target.value = event.target.value.replace(',', '.');
+   } else {
+     event.target.value = event.target.value.replace(',','');
+   }
   }
 };
 

@@ -54,7 +54,6 @@ export default function CreateShopModal(props: modalProps) {
         TypeAlert(`Solicitacao de compra criada com sucesso`,"success")
       props.handleClose();
     } catch (error) {
-      console.log(`entrou`)
       TypeAlert(`Ops.. algo deu errado`, `error`)
     }
   };

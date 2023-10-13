@@ -76,11 +76,11 @@ export function TableGrid(props: TableGridProps) {
                         </>
                     )}
                         {props.setLink && (
-                          <a href={row.purchaseLink} target='_blank'>
-                           <IconButton>
+                          <IconButton disabled={row.purchaseLink?false:true}>
+                            <a href={row.purchaseLink} target='_blank'>
                            <LinkIcon/>
-                           </IconButton>
                           </a>
+                          </IconButton>
                         )}
                     {props.onEdit && (
                         <IconButton

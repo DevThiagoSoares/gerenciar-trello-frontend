@@ -37,3 +37,4 @@ logs-pm2:
 	pm2 logs GERENCIAR-TRELLO-FRONTEND
 
 .PHONY: logs-pm2
+

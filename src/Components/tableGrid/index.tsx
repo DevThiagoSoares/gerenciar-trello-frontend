@@ -41,11 +41,11 @@ export function TableGrid(props: TableGridProps) {
                         </>
                     )}
                         {props.setLink && (
-                          <a href={row.purchaseLink} target='_blank'>
+                       
                            <IconButton>
                            <LinkIcon/>
+                           <a href={row.purchaseLink} target='_blank'></a>
                            </IconButton>
-                          </a>
                         )}
                     {props.onEdit && (
                         <IconButton
@@ -137,6 +137,7 @@ export function TableGrid(props: TableGridProps) {
                         paginationModel: { page: 0, pageSize: 25 },
                     },
                 }}
+                pageSizeOptions={[]}
                 components={{
                     NoRowsOverlay: () => (
                         <>

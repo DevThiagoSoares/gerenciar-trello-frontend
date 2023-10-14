@@ -1,12 +1,18 @@
 import { Box } from "@mui/material"
 import React from "react"
-import CardShopping from "./Cards/CardShop"
 import { container } from "./style"
+import CardTemplate from "./Cards/CardTemplate"
+import imageShop from './Cards/images/imageShopping.png'
 
 export function Home () {
     return(
         <Box sx={container}>
-            <CardShopping/>
+            <CardTemplate 
+                imgUrl={imageShop} 
+                route="/shopping" 
+                title="Abrir solicitaçao" 
+                subTitle="Faça uma nova solicitação de compra."
+            />
         </Box>
     )
 }

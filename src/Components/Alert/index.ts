@@ -7,7 +7,7 @@ export function TypeAlert (message:string, type: "success" | "error" | "warning"
         title: `${message}`,
         position: 'top',
         showConfirmButton: false,
-        timer: 3000,
+        timer: 6000,
         timerProgressBar: true,
         didOpen: (toast) => {
           toast.addEventListener('mouseenter', Swal.stopTimer)

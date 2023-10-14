@@ -2,6 +2,7 @@ import {
     Box,
     Button,
     FormControl,
+    Grid,
     InputLabel,
     MenuItem,
     Paper,
@@ -24,6 +25,7 @@ import { MaterialList, project } from "./interface";
 import { v4 as uuid } from "uuid";
 import { TableGrid } from "../../Components/tableGrid";
 import { removeInvalidCharacters } from "../../utils/regex";
+import { styledButton } from "../home/style";
 
 export function Shopping() {
     const [typeModal, setTypeModal] = useState<{ create: boolean }>({
@@ -115,140 +117,137 @@ export function Shopping() {
                     component={"form"}
                     onSubmit={handleSubmit}
                 >
-                    <Paper sx={paperContainer} elevation={2}>
-                        <Typography sx={subtitleStyle}>Dados do Projeto</Typography>
-                        <p>
-                            Informe seu nome e o projeto para qual deseja solicitar o
-                            material.
-                        </p>
-                        <Box sx={GridForms}>
-                            <TextField
-                                required
-                                id="filled-basic"
-                                label="Nome do solicitante"
-                                variant="filled"
-                                value={requester.requester ?? ""}
-                                onInput={(e)=>removeInvalidCharacters(e,'string')}
-                                name="requester"
-                                onChange={handleChange}
-                                sx={{ gridColumn: "span 2" }}
-                            />
-                            <TextField
-                                required
-                                id="filled-basic"
-                                label="Projeto"
-                                name="projectName"
-                                onInput={(e)=>removeInvalidCharacters(e,'string')}
-                                value={requester.projectName ?? ""}
-                                onChange={handleChange}
-                                variant="filled"
-                            />
-                            <TextField
-                                required
-                                id="filled-basic"
-                                label="Centro de custo"
-                                name="costCenter"
-                                value={requester.costCenter ?? ""}
-                                onInput={(e)=>removeInvalidCharacters(e,'string')}
-                                onChange={handleChange}
-                                variant="filled"
-                            />
-                            <TextField
-                                required
-                                id="filled-basic"
-                                label="Empresa/Filial"
-                                name="subsidiary"
-                                value={requester.subsidiary ?? ""}
-                                onInput={(e)=>removeInvalidCharacters(e,'string')}
-                                onChange={handleChange}
-                                variant="filled"
-                            />
-                            <FormControl fullWidth required>
-                                <InputLabel id="demo-simple-select-label">
-                                    Prioridade
-                                </InputLabel>
-                                <Select
-                                    labelId="demo-simple-select-label"
-                                    id="demo-simple-select"
-                                    value={requester.priority ?? ""}
-                                    variant="filled"
-                                    name="priority"
-                                    label="Prioridade"
-                                    onChange={handleChange}
-                                >
-                                    <MenuItem value="">
-                                        <em>Selecionar</em>
-                                    </MenuItem>
-                                    <MenuItem value={"Urgente"}>Urgente</MenuItem>
-                                    <MenuItem value={"Não Urgente"}>Não Urgente</MenuItem>
-                                </Select>
-                            </FormControl>
-                        </Box>
-                    </Paper>
-                    <Paper elevation={2} sx={paperContainer}>
-                        <Typography sx={subtitleStyle}>Inserir item na lista</Typography>
-                        <p>Adicione um item na sua lista de solicitação.</p>
-                        <Box sx={BoxContainer}>
-                            <TextField
-                                required
-                                id="filled-basic"
-                                label="Quantidade"
-                                name="quantity"
-                                value={materialList.quantity ?? ""}
-                                onInput={(e)=>removeInvalidCharacters(e,'number')}
-                                onChange={handleChangeItem}
-                                variant="filled"
-                            />
-                            <TextField
-                                required
-                                id="filled-basic"
-                                label="Unidade"
-                                name="und"
-                                onInput={(e)=>removeInvalidCharacters(e,'string')}
-                                value={materialList.und ?? ""}
-                                onChange={handleChangeItem}
-                                variant="filled"
-                            />
-                            <TextField
-                                required
-                                id="filled-basic"
-                                label="Descrição"
-                                variant="filled"
-                                name="description"
-                                onInput={(e)=>removeInvalidCharacters(e,'string')}
-                                value={materialList.description ?? ""}
-                                onChange={handleChangeItem}
-                                sx={{ gridColumn: "span 2" }}
-                            />
-                            <TextField
-                                id="filled-basic"
-                                label="Link da compra (opcional)"
-                                name="purchaseLink"
-                                value={materialList.purchaseLink ?? ""}
-                                onChange={handleChangeItem}
-                                variant="filled"
-                            />
-                            <TextField
-                                required
-                                id="filled-basic"
-                                name="unitaryValue"
-                                value={materialList.unitaryValue ?? ""}
-                                onInput={(e)=>removeInvalidCharacters(e,'number')}
-                                onChange={handleChangeItem}
-                                label="Valor unitário"
-                                variant="filled"
-                            />
-                        </Box>
-                        <Box sx={styleButton}>
-                            <Button
-                                variant="contained"
-                                sx={{ background: "#205171", borderRadius: "20px", mt: 2 }}
-                                type="submit"
-                            >
-                                Inserir
-                            </Button>
-                        </Box>
-                    </Paper>
+                     <Paper sx={paperContainer} elevation={2}>
+                                <Typography sx={subtitleStyle}>Dados do Projeto</Typography>
+                                <p>
+                                    Informe seu nome e o projeto para qual deseja solicitar o
+                                    material.
+                                </p>
+                                <Box sx={GridForms}>
+                                    <TextField
+                                        required
+                                        id="filled-basic"
+                                        label="Nome do solicitante"
+                                        variant="filled"
+                                        value={requester.requester ?? ""}
+                                        onInput={(e)=>removeInvalidCharacters(e,'string')}
+                                        name="requester"
+                                        onChange={handleChange}
+                                        sx={{ gridColumn: "span 2" }}
+                                    />
+                                    <TextField
+                                        required
+                                        id="filled-basic"
+                                        label="Projeto"
+                                        name="projectName"
+                                        onInput={(e)=>removeInvalidCharacters(e,'string')}
+                                        value={requester.projectName ?? ""}
+                                        onChange={handleChange}
+                                        variant="filled"
+                                    />
+                                    <TextField
+                                        required
+                                        id="filled-basic"
+                                        label="Centro de custo"
+                                        name="costCenter"
+                                        value={requester.costCenter ?? ""}
+                                        onInput={(e)=>removeInvalidCharacters(e,'string')}
+                                        onChange={handleChange}
+                                        variant="filled"
+                                    />
+                                    <TextField
+                                        required
+                                        id="filled-basic"
+                                        label="Empresa/Filial"
+                                        name="subsidiary"
+                                        value={requester.subsidiary ?? ""}
+                                        onInput={(e)=>removeInvalidCharacters(e,'string')}
+                                        onChange={handleChange}
+                                        variant="filled"
+                                    />
+                                    <FormControl fullWidth required>
+                                        <InputLabel id="demo-simple-select-label">
+                                            Prioridade
+                                        </InputLabel>
+                                        <Select
+                                            labelId="demo-simple-select-label"
+                                            id="demo-simple-select"
+                                            value={requester.priority ?? ""}
+                                            variant="filled"
+                                            name="priority"
+                                            label="Prioridade"
+                                            onChange={handleChange}
+                                        >
+                                            <MenuItem value={"Urgente"}>Urgente</MenuItem>
+                                            <MenuItem value={"Não Urgente"}>Não Urgente</MenuItem>
+                                        </Select>
+                                    </FormControl>
+                                </Box>
+                            </Paper>
+                            <Paper elevation={2} sx={paperContainer}>
+                                <Typography sx={subtitleStyle}>Inserir item na lista</Typography>
+                                <p>Adicione um item na sua lista de solicitação.</p>
+                                <Box sx={BoxContainer}>
+                                    <TextField
+                                        required
+                                        id="filled-basic"
+                                        label="Quantidade"
+                                        name="quantity"
+                                        value={materialList.quantity ?? ""}
+                                        onInput={(e)=>removeInvalidCharacters(e,'number')}
+                                        onChange={handleChangeItem}
+                                        variant="filled"
+                                    />
+                                    <TextField
+                                        required
+                                        id="filled-basic"
+                                        label="Unidade"
+                                        name="und"
+                                        onInput={(e)=>removeInvalidCharacters(e,'string')}
+                                        value={materialList.und ?? ""}
+                                        onChange={handleChangeItem}
+                                        variant="filled"
+                                    />
+                                    <TextField
+                                        required
+                                        id="filled-basic"
+                                        label="Descrição"
+                                        variant="filled"
+                                        name="description"
+                                        onInput={(e)=>removeInvalidCharacters(e,'string')}
+                                        value={materialList.description ?? ""}
+                                        onChange={handleChangeItem}
+                                        sx={{ gridColumn: "span 2" }}
+                                    />
+                                    <TextField
+                                        id="filled-basic"
+                                        label="Link da compra (opcional)"
+                                        name="purchaseLink"
+                                        value={materialList.purchaseLink ?? ""}
+                                        onChange={handleChangeItem}
+                                        variant="filled"
+                                    />
+                                   <TextField
+                                        required
+                                        id="filled-basic"
+                                        name="unitaryValue"
+                                        value={materialList.unitaryValue ?? ""}
+                                        onInput={(e)=>removeInvalidCharacters(e,'number')}
+                                        onChange={handleChangeItem}
+                                        label="Valor unitário"
+                                        variant="filled"
+                                    />
+                                </Box>
+                                <Box sx={styleButton}>
+                                    <Button
+                                        variant="contained"
+                                        sx={{ background: "#205171", borderRadius: "20px", mt: 2 }}
+                                        type="submit"
+                                    >
+                                        Inserir
+                                    </Button>
+                                </Box>
+                            </Paper>
                 </Box>
                 <Box>
                     <Paper elevation={2} sx={paperContainer}>
@@ -289,17 +288,13 @@ export function Shopping() {
                         </Box>
                         <Box sx={styleButton}>
                             <Button
-                                sx={{
-                                    color: "#205171",
-                                    borderRadius: "20px",
-                                    fontSize: "medium",
-                                }}
+                                sx={styledButton('#205171','#FFF')}
                             >
                                 Cancelar
                             </Button>
                             <Button
                                 variant="contained"
-                                sx={{ background: "#205171", borderRadius: "20px" }}
+                                sx={styledButton('#FFF','#205171')}
                                 disabled={rows.length === 0 ? true : false}
                                 onClick={handleOpenModalCreate}
                             >

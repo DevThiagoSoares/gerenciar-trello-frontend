@@ -2,7 +2,6 @@
 export const BoxContainer = {
     display: 'grid',
     gridTemplateColumns: '0.7fr 1fr',
-    justifyContent: 'center',
     gap: 2
 }
 
@@ -19,7 +18,8 @@ export const subtitleStyle = {
 }
 
 export const paperContainer = {
-    padding: '20px'
+    padding: '20px',
+    marginBottom:'10px'
 }
 
 export const GridForms = {

@@ -4,6 +4,7 @@ import Typography from '@mui/material/Typography';
 import { Dialog, DialogActions, DialogContent, DialogTitle, IconButton } from '@mui/material';
 import { colors } from '../../../shared/themes';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { styledButton } from '../../../Pages/home/style';
 
 interface modalProps {
     onDelete: () => void
@@ -53,8 +54,8 @@ export default function ModalDelete(props: modalProps) {
                         padding: '1.0rem',
                     }}></DialogContent>
                 <DialogActions sx={{ padding: '0 2.5rem 2.5rem 2.5rem' }}>
-                    <Button onClick={handleClose} sx={{ color: "#205171", borderRadius: "20px"}}>Cancelar</Button>
-                    <Button onClick={handleOk} sx={{ background: "#205171", borderRadius: "20px" }} variant="contained">
+                    <Button onClick={handleClose} sx={styledButton('#205171','#FFF')}>Cancelar</Button>
+                    <Button onClick={handleOk} sx={styledButton('#FFF','#205171')} variant="contained">
                         Excluir
                     </Button>
                 </DialogActions>

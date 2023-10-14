@@ -2,7 +2,7 @@
 export const tableContainer = {
   display: 'flex',
   flex: 1,
-  height: 'calc(100vh - 388px)',
+  height: 'calc(100vh - 248px)',
 };
 
 export const table = {

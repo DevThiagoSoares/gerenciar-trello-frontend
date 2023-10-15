@@ -1,12 +1,13 @@
-version: '3'
+version: '3.7'
 
 services:
-  gerenciar-trello-frontend:
-    image: gerenciar-trello-frontend:latest
+  trello-frontend:
+    image: trello-frontend:latest
     build:
       dockerfile: Dockerfile
       context: .
-    container_name: gerenciar-trello-frontend
+    container_name: trello-frontend
+    network_mode: bridge
     restart: always
     ports:
       - ${PROJECT_PORT}:80

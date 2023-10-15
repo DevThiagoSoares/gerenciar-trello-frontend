@@ -10,7 +10,7 @@ export function Home () {
             <CardTemplate 
                 imgUrl={imageShop} 
                 route="/shopping" 
-                title="Abrir solicitaçao" 
+                title="Abrir solicitação" 
                 subTitle="Faça uma nova solicitação de compra."
             />
         </Box>

@@ -1,21 +1,20 @@
-
 export const tableContainer = {
   display: 'flex',
   flex: 1,
-  height: 'calc(100vh - 248px)',
+  height: "100%",
 };
 
 export const table = {
-  width: '100%',
+  width: '100%', // 100% da largura da tela
   border: 0,
   '& .super-app-theme--header': {
     backgroundColor: 'rgba(0, 0, 0, 0.09)',
-    color: 'balck',
+    color: 'black', // 'balck' corrigido para 'black'
     padding: '20px',
-    height: '10px',
+    height: 'auto', // Altura automática para o cabeçalho
   },
   '& .MuiDataGrid-cell': {
-    padding: '24px',
+    padding: '1em', // Use unidades flexíveis para o preenchimento
   },
   '& .MuiDataGrid-iconSeparator': {
     color: 'rgba(0, 0, 0, 0.09)',

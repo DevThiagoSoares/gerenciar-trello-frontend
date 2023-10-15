@@ -1,8 +1,6 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import Modal from "@mui/material/Modal";
 import { TextField } from "@mui/material";
 import { styleButton } from "../style";
 import { gridForms } from "./style";
@@ -10,18 +8,7 @@ import { equipeProps, itemListProps } from "../interface";
 import { createCard } from "../../../service/shop";
 import { removeInvalidCharacters, validateEmail } from "../../../utils/regex";
 import { TypeAlert } from "../../../Components/Alert";
-
-const style = {
-  position: "absolute" as "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 600,
-  bgcolor: "background.paper",
-  border: "2px solid #FFF",
-  boxShadow: 24,
-  p: 4,
-};
+import ModalContainer from "../../../Components/Modal/modaContainer";
 
 interface modalProps {
   open: boolean;
@@ -52,8 +39,8 @@ export default function CreateShopModal(props: modalProps) {
        if(validateEmail(equip.email)){
         await createCard(payload);
         TypeAlert(`Solicitacao de compra criada com sucesso`,"success")
-      props.handleClose();
-      props.updateList()
+        props.handleClose();
+        props.updateList()
        }
     } catch (error) {
       TypeAlert(`Ops.. algo deu errado`, `error`)
@@ -62,25 +49,17 @@ export default function CreateShopModal(props: modalProps) {
 
   return (
     <div>
-      <Modal
+      <ModalContainer
+        fullWidth={true}
+        maxWidth="sm"
         open={props.open}
-        onClose={props.handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
+        title="Concluir solicitação"
+        subTitle="Confirme as informações finais de solicitação"
       >
-        <Box sx={style} component={"form"} onSubmit={handleSubmit}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Concluir solicitação
-          </Typography>
-          <Typography
-            id="modal-modal-description"
-            sx={{ mb: 2 }}
-            variant="subtitle2"
-          >
-            Confirme as informações finais de solicitação
-          </Typography>
+      <Box  component={"form"} onSubmit={handleSubmit}>
           <Box sx={gridForms}>
             <TextField
+              required
               id="filled-basic"
               label="Líder do projeto"
               name="projectLeader"
@@ -90,6 +69,7 @@ export default function CreateShopModal(props: modalProps) {
               variant="filled"
             />
             <TextField
+              required
               id="filled-basic"
               label="Gerente do projeto"
               name="projectManager"
@@ -99,6 +79,7 @@ export default function CreateShopModal(props: modalProps) {
               variant="filled"
             />
             <TextField
+              required
               id="filled-basic"
               label="Gerente técnico"
               name="technicalManager"
@@ -110,6 +91,7 @@ export default function CreateShopModal(props: modalProps) {
             <TextField
               id="filled-basic"
               label="Justificativa"
+              required
               variant="filled"
               sx={{ gridColumn: "span 3" }}
               multiline
@@ -121,14 +103,17 @@ export default function CreateShopModal(props: modalProps) {
             />
             <TextField
               id="filled-basic"
-              label="Email do solicitante"
+              required
+              label={
+                equip.email?!validateEmail(equip.email)?
+                'Email inválido':'Email do solicitante':
+                "Email do solicitante"}
               variant="filled"
               name="email"
               onChange={handleChange}
               value={equip.email}
               sx={{ gridColumn: "span 3" }}
-              error={!validateEmail(equip.email)}
-              helperText={!validateEmail(equip.email)?'Email inválido':''}
+              error={equip.email?!validateEmail(equip.email):false}
             />
           </Box>
           <Box sx={styleButton}>
@@ -142,12 +127,13 @@ export default function CreateShopModal(props: modalProps) {
               sx={{ background: "#205171", borderRadius: "20px" }}
               variant="contained"
               type="submit"
+              disabled={equip.email?!validateEmail(equip.email):false}
             >
               Concluir
             </Button>
           </Box>
         </Box>
-      </Modal>
+      </ModalContainer>
     </div>
   );
 }

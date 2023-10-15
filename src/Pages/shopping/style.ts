@@ -9,6 +9,7 @@ export const titleStyle = {
     color: '#5E839C',
     fontFamily: 'Roboto, Black, sans-serif',
     fontSize: 'x-large',
+    fontWeight: 530
 }
 
 export const subtitleStyle = {
@@ -19,7 +20,7 @@ export const subtitleStyle = {
 
 export const paperContainer = {
     padding: '20px',
-    marginBottom:'10px'
+    marginBottom:'10px',
 }
 
 export const GridForms = {

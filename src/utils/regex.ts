@@ -12,13 +12,11 @@ export const removeInvalidCharacters = (event: any, type: string) => {
         event.target.value = event.target.value.replace(regex, "");
       }
   } else {
-   const regex = /^-?\d*\.?\d*(,\d+)?$/;
-   if (event.target.value.match(regex) !== null) {
-     event.target.value = event.target.value.replace(',', '.');
-   } else {
-     event.target.value = event.target.value.replace(',','');
-   }
+   const regex = /[^0-9.,]/g;
+   event.target.value = event.target.value.replace(regex, "");
+   event.target.value = event.target.value.replace(",", ".");
   }
+
 };
 
 export const reduceDecimalPlaces = (value:number, decimals: number) =>{
@@ -30,6 +28,8 @@ export const reduceDecimalPlaces = (value:number, decimals: number) =>{
 }
 
 export function validateEmail(email:string) {
-  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return regex.test(email);
+  if(email){
+    const regex =/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return regex.test(email);
+  }
 }

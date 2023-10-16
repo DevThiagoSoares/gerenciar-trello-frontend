@@ -130,7 +130,7 @@ export default function CreateShopModal(props: modalProps) {
             </Button>
             <LoadingButton
               loading={loadingButton}
-              variant="outlined"
+              variant="contained"
               sx={{ background: "#205171", borderRadius: "20px" }}
               disabled={equip.email ? !validateEmail(equip.email) : false}
               type="submit"

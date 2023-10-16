@@ -9,6 +9,8 @@ import { createCard } from "../../../service/shop";
 import { removeInvalidCharacters, validateEmail } from "../../../utils/regex";
 import { TypeAlert } from "../../../Components/Alert";
 import ModalContainer from "../../../Components/Modal/modaContainer";
+import LoadingButton from '@mui/lab/LoadingButton';
+
 
 interface modalProps {
   open: boolean;
@@ -19,6 +21,7 @@ interface modalProps {
 
 export default function CreateShopModal(props: modalProps) {
   const [equip, setEquipe] = React.useState<equipeProps>({} as equipeProps);
+  const [loadingButton, setLoadingButton] = React.useState<boolean>(false)
 
   const handleChange = (event: any) => {
     setEquipe((state: any) => ({
@@ -28,6 +31,7 @@ export default function CreateShopModal(props: modalProps) {
   };
 
   const handleSubmit = async (event: React.FormEvent) => {
+    setLoadingButton(true)
     event.preventDefault();
     const payload: itemListProps = {
       ...equip,
@@ -36,14 +40,16 @@ export default function CreateShopModal(props: modalProps) {
     };
 
     try {
-       if(validateEmail(equip.email)){
+      if (validateEmail(equip.email)) {
         await createCard(payload);
-        TypeAlert(`Solicitacao de compra criada com sucesso`,"success")
+        TypeAlert(`Solicitação de compra criada com sucesso`, "success")
         props.handleClose();
         props.updateList()
-       }
+        setLoadingButton(false)
+      }
     } catch (error) {
       TypeAlert(`Ops.. algo deu errado`, `error`)
+      setLoadingButton(false)
     }
   };
 
@@ -56,7 +62,7 @@ export default function CreateShopModal(props: modalProps) {
         title="Concluir solicitação"
         subTitle="Confirme as informações finais de solicitação"
       >
-      <Box  component={"form"} onSubmit={handleSubmit}>
+        <Box component={"form"} onSubmit={handleSubmit}>
           <Box sx={gridForms}>
             <TextField
               required
@@ -65,7 +71,7 @@ export default function CreateShopModal(props: modalProps) {
               name="projectLeader"
               value={equip.projectLeader}
               onChange={handleChange}
-              onInput={(e)=>removeInvalidCharacters(e,'string')}
+              onInput={(e) => removeInvalidCharacters(e, 'string')}
               variant="filled"
             />
             <TextField
@@ -75,7 +81,7 @@ export default function CreateShopModal(props: modalProps) {
               name="projectManager"
               value={equip.projectManager}
               onChange={handleChange}
-              onInput={(e)=>removeInvalidCharacters(e,'string')}
+              onInput={(e) => removeInvalidCharacters(e, 'string')}
               variant="filled"
             />
             <TextField
@@ -84,7 +90,7 @@ export default function CreateShopModal(props: modalProps) {
               label="Gerente técnico"
               name="technicalManager"
               value={equip.technicalManager}
-              onInput={(e)=>removeInvalidCharacters(e,'string')}
+              onInput={(e) => removeInvalidCharacters(e, 'string')}
               onChange={handleChange}
               variant="filled"
             />
@@ -98,22 +104,21 @@ export default function CreateShopModal(props: modalProps) {
               name="justification"
               value={equip.justification}
               onChange={handleChange}
-              onInput={(e)=>removeInvalidCharacters(e,'string')}
               rows={3}
             />
             <TextField
               id="filled-basic"
               required
               label={
-                equip.email?!validateEmail(equip.email)?
-                'Email inválido':'Email do solicitante':
-                "Email do solicitante"}
+                equip.email ? !validateEmail(equip.email) ?
+                  'Email inválido' : 'Email do solicitante' :
+                  "Email do solicitante"}
               variant="filled"
               name="email"
               onChange={handleChange}
               value={equip.email}
               sx={{ gridColumn: "span 3" }}
-              error={equip.email?!validateEmail(equip.email):false}
+              error={equip.email ? !validateEmail(equip.email) : false}
             />
           </Box>
           <Box sx={styleButton}>
@@ -123,14 +128,15 @@ export default function CreateShopModal(props: modalProps) {
             >
               Cancelar
             </Button>
-            <Button
+            <LoadingButton
+              loading={loadingButton}
+              variant="outlined"
               sx={{ background: "#205171", borderRadius: "20px" }}
-              variant="contained"
+              disabled={equip.email ? !validateEmail(equip.email) : false}
               type="submit"
-              disabled={equip.email?!validateEmail(equip.email):false}
             >
               Concluir
-            </Button>
+            </LoadingButton>
           </Box>
         </Box>
       </ModalContainer>

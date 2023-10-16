@@ -1,15 +1,16 @@
 export const container = {
-    margin:'20px',
-    display:'flex'
+    margin: '20px',
+    display: 'flex',
+    gap: 3
 }
 
-export const styledButton = (color:string, background:string) => {
-   return {
-    background: background, 
-    color:color,
-    borderRadius: "20px",
-    fontSize: "small",
-   }
+export const styledButton = (color: string, background: string) => {
+    return {
+        background: background,
+        color: color,
+        borderRadius: "20px",
+        fontSize: "small",
+    }
 }
 
 export const styledLegend = {

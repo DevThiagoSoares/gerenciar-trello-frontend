@@ -67,8 +67,8 @@ export function Shopping() {
             }
         })
         setRows(newList)
+        setMaterialList(newList)
     }
-
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
         const arrayList = {

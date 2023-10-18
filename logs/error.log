@@ -421,3 +421,22 @@
 2023/10/17 23:50:23 [notice] 1#1: worker process 29 exited with code 0
 2023/10/17 23:50:23 [notice] 1#1: worker process 40 exited with code 0
 2023/10/17 23:50:23 [notice] 1#1: exit
+2023/10/17 23:53:30 [notice] 1#1: using the "epoll" event method
+2023/10/17 23:53:30 [notice] 1#1: nginx/1.25.2
+2023/10/17 23:53:30 [notice] 1#1: built by gcc 12.2.0 (Debian 12.2.0-14) 
+2023/10/17 23:53:30 [notice] 1#1: OS: Linux 5.15.0-86-generic
+2023/10/17 23:53:30 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2023/10/17 23:53:30 [notice] 1#1: start worker processes
+2023/10/17 23:53:30 [notice] 1#1: start worker process 28
+2023/10/17 23:53:30 [notice] 1#1: start worker process 29
+2023/10/17 23:53:30 [notice] 1#1: start worker process 30
+2023/10/17 23:53:30 [notice] 1#1: start worker process 31
+2023/10/17 23:53:30 [notice] 1#1: start worker process 32
+2023/10/17 23:53:30 [notice] 1#1: start worker process 33
+2023/10/17 23:53:30 [notice] 1#1: start worker process 34
+2023/10/17 23:53:30 [notice] 1#1: start worker process 35
+2023/10/17 23:53:30 [notice] 1#1: start worker process 36
+2023/10/17 23:53:30 [notice] 1#1: start worker process 37
+2023/10/17 23:53:30 [notice] 1#1: start worker process 38
+2023/10/17 23:53:30 [notice] 1#1: start worker process 39
+2023/10/17 23:53:44 [error] 28#28: *1 open() "/usr/share/nginx/html/shopping" failed (2: No such file or directory), client: 172.17.0.1, server: localhost, request: "GET /shopping HTTP/1.1", host: "localhost:4080"
